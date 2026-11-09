@@ -20,7 +20,11 @@ const RootLayout: React.FC = () => {
 
   useEffect(() => {
     const index = PAGES.indexOf(location.pathname);
-    if (index === -1) return; // not a scrollable page, do nothing
+    if (index === -1) return;
+
+    const SCROLL_THRESHOLD = 120;
+    let delta = 0;
+    let resetTimer: ReturnType<typeof setTimeout>;
 
     const go = (dir: number) => {
       if (locked.current) return;
@@ -30,12 +34,18 @@ const RootLayout: React.FC = () => {
       locked.current = true;
       setDirection(dir);
       navigate(PAGES[next]);
-      setTimeout(() => (locked.current = false), 1000); // ignore extra scrolls during the transition
+      setTimeout(() => (locked.current = false), 1800);
     };
 
     const onWheel = (e: WheelEvent) => {
-      if (Math.abs(e.deltaY) < 30) return; // ignore tiny trackpad movements
-      go(e.deltaY > 0 ? 1 : -1);
+      delta += e.deltaY;
+      clearTimeout(resetTimer);
+      resetTimer = setTimeout(() => (delta = 0), 150);
+
+      if (Math.abs(delta) < SCROLL_THRESHOLD) return;
+      const dir = delta > 0 ? 1 : -1;
+      delta = 0;
+      go(dir);
     };
 
     let startY = 0;
@@ -44,14 +54,15 @@ const RootLayout: React.FC = () => {
     };
     const onTouchEnd = (e: TouchEvent) => {
       const diff = startY - e.changedTouches[0].clientY;
-      if (Math.abs(diff) < 50) return;
-      go(diff > 0 ? 1 : -1); // swipe up = next page
+      if (Math.abs(diff) < 80) return;
+      go(diff > 0 ? 1 : -1);
     };
 
     window.addEventListener("wheel", onWheel);
     window.addEventListener("touchstart", onTouchStart);
     window.addEventListener("touchend", onTouchEnd);
     return () => {
+      clearTimeout(resetTimer);
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("touchend", onTouchEnd);
