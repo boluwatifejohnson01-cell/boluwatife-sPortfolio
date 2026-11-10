@@ -8,6 +8,7 @@ import mongodbLogo from "../assets/mongodb-logo-png_seeklogo-481256.png";
 import expressLogo from "../assets/express-js1720895488.logowik.com.png";
 import useTypewriter from "../Hooks/useTypewriter";
 import LogoCarousel from "../Hooks/LogoCarousel";
+import { Link } from "react-router-dom";
 
 const roles = [
   "Full Stack Developer",
@@ -42,12 +43,18 @@ const HeroSection: React.FC = () => {
           </p>
 
           <div className="flex gap-3">
-            <button className="w-35 md:w-40 h-10 md:h-12 border border-[#eb7e14] rounded-[10px] text-[14px] md:text-[16px] text-[#0d0205] cursor-pointer px-1 hover:bg-[#eb7e14] hover:text-white font-medium hover:border-none">
+            <Link
+              to="/myprojects"
+              className="w-35 md:w-40 h-10 md:h-12 border border-[#eb7e14] rounded-[10px] text-[14px] md:text-[16px] text-[#0d0205] cursor-pointer px-1 hover:bg-[#eb7e14] hover:text-white font-medium hover:border-none"
+            >
               View My Projects
-            </button>
-            <button className="w-25 md:w-35 h-10 md:h-12 border border-[#1f0000] rounded-[10px] text-[14px] md:text-[16px] text-[#0d0205] cursor-pointer hover:bg-[#67011c] hover:text-white font-medium hover:border-none">
+            </Link>
+            <Link
+              to="/contact"
+              className="w-25 md:w-35 h-10 md:h-12 border border-[#1f0000] rounded-[10px] text-[14px] md:text-[16px] text-[#0d0205] cursor-pointer hover:bg-[#67011c] hover:text-white font-medium hover:border-none"
+            >
               Let's Talk
-            </button>
+            </Link>
           </div>
         </div>
 
