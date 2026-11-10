@@ -104,9 +104,15 @@ const Navbar: React.FC = () => {
               }`
             }
           >
-            <p className="text-[14px] text-white md:text-[#0d0205] uppercase font-bold hover:text-black">
-              Let's Talk
-            </p>
+            {({ isActive }) => (
+              <p
+                className={`text-[14px] uppercase font-bold hover:text-white ${
+                  isActive ? "text-white" : "md:text-[#0d0205]"
+                }`}
+              >
+                Let's Talk
+              </p>
+            )}
           </NavLink>
         </div>
       </div>

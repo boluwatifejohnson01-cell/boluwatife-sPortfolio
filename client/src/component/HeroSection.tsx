@@ -45,13 +45,13 @@ const HeroSection: React.FC = () => {
           <div className="flex gap-3">
             <Link
               to="/myprojects"
-              className="w-35 md:w-40 h-10 md:h-12 border border-[#eb7e14] rounded-[10px] text-[14px] md:text-[16px] text-[#0d0205] cursor-pointer px-1 hover:bg-[#eb7e14] hover:text-white font-medium hover:border-none"
+              className="w-35 md:w-40 h-10 md:h-12 border border-[#eb7e14] rounded-[10px] flex items-center justify-center text-[14px] md:text-[16px] text-[#0d0205] cursor-pointer px-1 hover:bg-[#eb7e14] hover:text-white font-medium hover:border-none"
             >
               View My Projects
             </Link>
             <Link
               to="/contact"
-              className="w-25 md:w-35 h-10 md:h-12 border border-[#1f0000] rounded-[10px] text-[14px] md:text-[16px] text-[#0d0205] cursor-pointer hover:bg-[#67011c] hover:text-white font-medium hover:border-none"
+              className="w-25 md:w-35 h-10 md:h-12 border border-[#1f0000] rounded-[10px] flex items-center justify-center  text-[14px] md:text-[16px] text-[#0d0205] cursor-pointer hover:bg-[#67011c] hover:text-white font-medium hover:border-none"
             >
               Let's Talk
             </Link>

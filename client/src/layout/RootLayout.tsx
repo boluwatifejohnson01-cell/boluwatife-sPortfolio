@@ -34,7 +34,7 @@ const RootLayout: React.FC = () => {
       locked.current = true;
       setDirection(dir);
       navigate(PAGES[next]);
-      setTimeout(() => (locked.current = false), 1800);
+      setTimeout(() => (locked.current = false), 3500);
     };
 
     const onWheel = (e: WheelEvent) => {
