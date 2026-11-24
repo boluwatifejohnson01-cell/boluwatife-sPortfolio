@@ -27,7 +27,9 @@ const RootLayout: React.FC = () => {
   const navigate = useNavigate();
   const [direction, setDirection] = useState(1);
   const locked = useRef(false);
-  const lockTimer = useRef<ReturnType<typeof setTimeout>>();
+  const lockTimer = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
   const lastScrollAt = useRef(0);
 
   useEffect(() => {
