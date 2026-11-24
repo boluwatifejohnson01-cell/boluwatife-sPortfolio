@@ -88,11 +88,17 @@ const RootLayout: React.FC = () => {
     let startedAtBottom = false;
 
     const onTouchStart = (e: TouchEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.closest("a, button, input, textarea, select")) {
+        startY = NaN; // mark this gesture as ignored
+        return;
+      }
       startY = e.touches[0].clientY;
       startedAtTop = atTop();
       startedAtBottom = atBottom();
     };
     const onTouchEnd = (e: TouchEvent) => {
+      if (Number.isNaN(startY)) return;
       const diff = startY - e.changedTouches[0].clientY;
       if (Math.abs(diff) < 80) return;
       const dir = diff > 0 ? 1 : -1;
